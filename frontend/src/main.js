@@ -12,41 +12,41 @@ style: {
 "delineasi_ikn": {
 "type": "raster",
 "tiles": [
-"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:Delineasi_IKN&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&format=image/png&transparent=true"
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:Delineasi_IKN&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
 ],
-"tileSize": 256
+"tileSize": 512
 },
 
 "osm_geoserver": {
 "type": "raster",
 "tiles": [
-"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:IKN_osm&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&format=image/png&transparent=true"
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:IKN_osm&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
 ],
-"tileSize": 256
+"tileSize": 512
 },
 
 "buffer300": {
 "type": "raster",
 "tiles": [
-"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:buffer_banjir_300m_IKN&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&format=image/png&transparent=true"
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:buffer_banjir_300m_IKN&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
 ],
-"tileSize": 256
+"tileSize": 512
 },
 
 "buffer100": {
 "type": "raster",
 "tiles": [
-"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:buffer_banjir_100m_IKN&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&format=image/png&transparent=true"
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:buffer_banjir_100m_IKN&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
 ],
-"tileSize": 256
+"tileSize": 512
 },
 
 "sungai": {
 "type": "raster",
 "tiles": [
-"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:river_IKN&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&format=image/png&transparent=true"
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:river_IKN&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
 ],
-"tileSize": 256
+"tileSize": 512
 },
 
 },
@@ -93,6 +93,9 @@ zoom: 10,
 // minZoom: 8
 
 });
+
+// Add navigation control
+map.addControl(new maplibregl.NavigationControl());
 
 // Fix layer toggle functionality
 function toggleLayer(layerId, checkboxId) {

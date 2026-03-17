@@ -11,9 +11,34 @@ margin:0;
 padding:0;
 }
 
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
 #map{
 position:absolute;
-top:0;
+top:80px;
 bottom:0;
 width:100%;
 }
@@ -46,6 +71,11 @@ font-size: 14px;
 </head>
 
 <body>
+
+<header>
+    <div class="logo">OIKN</div>
+    <h1>Flood Risk Map of IKN</h1>
+</header>
 
 <div id="menu">
 <b>Layer</b><br>
@@ -80,10 +110,6 @@ font-size: 14px;
         River<br>
     </div>
     <img src="http://127.0.0.1:8081/geoserver/ikn/wms?service=WMS&request=GetLegendGraphic&layer=ikn:IKN_osm&format=image/png" alt="OSM IKN">
-</div>
-
-<div id="title" style="position:absolute; top:10px; right:10px; background:white; padding:10px; font-size:18px; font-weight:bold; z-index:2; border:1px solid black;">
-    Flood Risk Map of IKN
 </div>
 
 <div id="map"></div>
