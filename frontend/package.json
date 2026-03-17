@@ -1,0 +1,20 @@
+{
+  "name": "oikn-webgis-training-mapid2",
+  "version": "1.0.0",
+  "description": "Flood Risk Map of IKN using MapLibre GL JS with Vite",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["webgis", "maplibre", "flood-risk", "ikn"],
+  "author": "Nur Inna Alfianinda",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^4.4.0"
+  },
+  "dependencies": {
+    "maplibre-gl": "^3.6.1"
+  }
+}
