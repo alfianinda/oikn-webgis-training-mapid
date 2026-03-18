@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Flood Risk Map of IKN</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-margin:0;
-padding:0;
+    margin:0;
+    padding:0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 header {
@@ -16,8 +18,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    background: #fff;
-    padding: 10px 20px;
+    background: #f6f8fabf;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     z-index: 1000;
     display: flex;
@@ -25,10 +26,7 @@ header {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-    margin-right: 20px;
+    max-width: 70px;
 }
 
 header h1 {
@@ -36,34 +34,111 @@ header h1 {
     font-size: 20px;
 }
 
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #007bff;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #007bff;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
 #map{
-position:absolute;
-top:80px;
-bottom:0;
-width:100%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
 }
 
 #menu{
-position:absolute;
-background:white;
-padding:10px;
-top:10px;
-left:10px;
-z-index:1;
-font-size:14px;
+    position:absolute;
+    background:white;
+    padding:15px;
+    top:90px;
+    left:10px;
+    z-index:1;
+    font-size:14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 200px;
 }
 
 #legend{
-position:absolute;
-bottom:20px;
-left:10px;
-padding:10px;
-font-size: 13px;
-z-index:1;
+    position:absolute;
+    bottom:20px;
+    right:10px;
+    padding:15px;
+    font-size: 13px;
+    z-index:1;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 250px;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 #legend>div:first-child{
-font-size: 14px;
+    font-size: 14px;
+}
+
+.maplibregl-ctrl-top-right {
+    top: 70px !important;
 }
 
 </style>
@@ -73,19 +148,18 @@ font-size: 14px;
 <body>
 
 <header>
-    <div class="logo">OIKN</div>
+    <img src="assets/logo-ikn.png" alt="OIKN Logo" class="logo">
     <h1>Flood Risk Map of IKN</h1>
 </header>
 
 <div id="menu">
-<b>Layer</b><br>
+<b>Layer</b>
 
-
-<input type="checkbox" id="osm_geoserver" checked> Basemap<br>
-<input type="checkbox" id="delineasi_ikn" checked> IKN Boundary<br>
-<input type="checkbox" id="sungai" checked> Rivers<br>
-<input type="checkbox" id="buffer100" checked> High Flood Risk (100 m)<br>
-<input type="checkbox" id="buffer300" checked> Moderate Flood Risk (300 m)
+<label><input type="checkbox" id="osm_geoserver" checked> Basemap</label>
+<label><input type="checkbox" id="delineasi_ikn" checked> IKN Boundary</label>
+<label><input type="checkbox" id="sungai" checked> Rivers</label>
+<label><input type="checkbox" id="buffer100" checked> High Flood Risk (100 m)</label>
+<label><input type="checkbox" id="buffer300" checked> Moderate Flood Risk (300 m)</label>
 
 </div>
 
@@ -112,6 +186,10 @@ font-size: 14px;
     <img src="http://127.0.0.1:8081/geoserver/ikn/wms?service=WMS&request=GetLegendGraphic&layer=ikn:IKN_osm&format=image/png" alt="OSM IKN">
 </div>
 
+<div id="loading">
+    <div class="spinner"></div>
+    Loading map...
+</div>
 <div id="map"></div>
 <script type="module" src="/src/main.js"></script>
 

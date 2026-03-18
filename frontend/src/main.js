@@ -49,6 +49,14 @@ style: {
 "tileSize": 512
 },
 
+"osm_label": {
+"type": "raster",
+"tiles": [
+"http://127.0.0.1:8081/geoserver/ikn/gwc/service/wms?service=WMS&request=GetMap&layers=ikn:IKN_osm_label&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&format=image/png&transparent=true"
+],
+"tileSize": 512
+},
+
 },
 
 "layers": [
@@ -81,7 +89,13 @@ style: {
 "id": "sungai",
 "type": "raster",
 "source": "sungai"
-}
+},
+
+{
+"id": "osm_label",
+"type": "raster",
+"source": "osm_label"
+},
 
 ]
 
@@ -94,10 +108,23 @@ zoom: 10,
 
 });
 
-// Add navigation control
+// Add controls
 map.addControl(new maplibregl.NavigationControl());
+map.addControl(new maplibregl.ScaleControl());
+map.addControl(new maplibregl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
+map.addControl(new maplibregl.FullscreenControl());
 
-// Fix layer toggle functionality
+// Hide loading when map loads
+map.on('load', () => {
+    document.getElementById('loading').style.display = 'none';
+});
+
+// Layer toggle functionality
 function toggleLayer(layerId, checkboxId) {
     const checkbox = document.getElementById(checkboxId);
     checkbox.addEventListener('change', () => {

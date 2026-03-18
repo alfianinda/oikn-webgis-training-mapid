@@ -16,6 +16,10 @@ This project displays flood risk areas in IKN based on proximity to rivers:
 
 The map includes additional layers for administrative boundaries, hydrology, and basemap imagery.
 
+## Screenshot
+
+![Flood Risk Map Screenshot](frontend/assets/ss-map.png)
+
 ## Project Structure
 
 ```
@@ -198,4 +202,3 @@ Located in the bottom-left corner, explains:
 ## Contributing
 
 This project is developed for Otorita Ibu Kota Nusantara. For contributions or modifications, contact the author.
-
