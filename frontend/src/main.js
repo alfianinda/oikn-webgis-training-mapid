@@ -122,6 +122,7 @@ map.addControl(new maplibregl.FullscreenControl());
 // Hide loading when map loads
 map.on('load', () => {
     document.getElementById('loading').style.display = 'none';
+    document.getElementById('copyright').innerHTML = `© ${new Date().getFullYear()} Nur Inna Alfianinda`;
 });
 
 // Layer toggle functionality
