@@ -18,7 +18,7 @@ The map includes additional layers for administrative boundaries, hydrology, and
 
 ## Screenshot
 
-![Flood Risk Map Screenshot](frontend/assets/ss-map.png)
+![Flood Risk Map Screenshot](frontend/src/assets/ss-map.png)
 
 ## Project Structure
 
